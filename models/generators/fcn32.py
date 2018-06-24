@@ -1,11 +1,9 @@
 
 import sys
-sys.path.append('/Users/albertbou/PycharmProjects/AdversarialSemanticSegmentation/models')
 import layers
 import tensorflow as tf
 import numpy as np
-#weights_path = "/gan_segmentation/vgg16_weights.npz"
-weights_path = "/Users/albertbou/PycharmProjects/AdversarialSemanticSegmentation/vgg16_weights.npz"
+weights_path = "/gan_segmentation/vgg16_weights.npz"
 
 def fcn32(x, pkeep, classes, pretrained = 1):
 
