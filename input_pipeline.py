@@ -30,6 +30,7 @@ def fcn_parse_fn(example):
     label = tf.slice(combined_crop, [0, 0, 3], [256, 256, 1])
     label = tf.cast(label, dtype=tf.float32)
     image = tf.cast(image, dtype=tf.float32)
+    image = tf.divide(image, 255.)
 
     # Data Augmentation
     image, label = random_color_distortion(image, label)
@@ -38,7 +39,6 @@ def fcn_parse_fn(example):
     # image, label = flip_randomly_up_down_image_with_annotation(image, label) - I decide not to flip vertically
 
     # Normalize data and labels
-    image = tf.divide(image, 255.)
     image = tf.subtract(image, 127. / 255.)
     label = tf.subtract(label, tf.ones([256, 256, 1]) * 6)
     label = tf.cast(label, dtype=tf.int32)
@@ -70,9 +70,9 @@ def fcn_parse_fn_val_and_test(example):
     label = tf.slice(combined_crop, [0, 0, 3], [256, 256, 1])
     label = tf.cast(label, dtype=tf.float32)
     image = tf.cast(image, dtype=tf.float32)
+    image = tf.divide(image, 255.)
 
     # Normalize data and labels
-    image = tf.divide(image, 255.)
     image = tf.subtract(image, 127. / 255.)
     label = tf.subtract(label, tf.ones([256, 256, 1]) * 6)
     label = tf.cast(label, dtype=tf.int32)
