@@ -1,12 +1,10 @@
 
 import sys
 from layers import WEIGHT_DECAY_KEY
-#sys.path.append('/Users/albertbou/PycharmProjects/AdversarialSemanticSegmentation/models/discriminators')
 sys.path.append('/gan_segmentation/models/discriminators')
-import largeFOV, largeFOV_DCGAN, smallFOV, smallFOV_DCGAN, stanford_background_dataset_discriminator
-#sys.path.append('/Users/albertbou/PycharmProjects/AdversarialSemanticSegmentation/models/generators')
+import largeFOV, smallFOV, stanford_background_dataset_discriminator
 sys.path.append('/gan_segmentation/models/generators')
-import fcn32, fcn32_DCGAN, unet, deeplab_v3
+import fcn32, unet, deeplab_v3
 import tensorflow as tf
 import numpy as np
 from utils import compute_accuracy
