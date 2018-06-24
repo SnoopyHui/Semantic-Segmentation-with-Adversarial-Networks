@@ -3,8 +3,6 @@
 # Imports
 from __future__ import print_function, division
 import sys
-sys.path.append('/Users/albertbou/PycharmProjects/AdversarialSemanticSegmentation/')
-#sys.path.append('/gan_segmentation/')
 import updater
 from utils import *
 from input_pipeline import*
@@ -33,9 +31,9 @@ num_classes = 8
 # Options
 save_model = 1
 restore = 0
-dataset_path = "/data/albert_segmentation_datasets/full_image_stanford_background_dataset/"
+dataset_path = ""
 restore_path = ""
-save_path = "/gan_segmentation/checkpoints/"
+save_path = ""
 
 def adversarial_training(args, save_path = save_path):
 
@@ -122,12 +120,15 @@ def adversarial_training(args, save_path = save_path):
         normalised_D_epoch_loss = D_epoch_loss / num_val_images
         return normalised_D_epoch_loss, normalised_G_epoch_loss, G_val_pix_ac, G_val_mean_iou, G_val_class_acc
 
-    if generator == 'fcn32' or generator == 'fcn32_DCGAN':
+    if generator == 'fcn32':
         train_images, train_labels = fcn_read_and_decode(dataset_path + 'train_dataset.tfrecords', epochs, batch_size)
         val_images, val_labels = fcn_read_and_decode_val_and_test(dataset_path + 'validation_dataset.tfrecords', epochs, 1)
     elif generator == 'unet':
         train_images, train_labels = unet_read_and_decode(dataset_path + 'train_dataset.tfrecords', epochs, batch_size)
         val_images, val_labels = unet_read_and_decode(dataset_path + 'validation_dataset.tfrecords', epochs, 1)
+    elif generator == 'deeplab_v3':
+        print('To be implemented...')
+        sys.exit(1)
 
     # Define models
     with tf.variable_scope("model"):
