@@ -40,7 +40,6 @@ def fcn_parse_fn(example):
 
     # Normalize data and labels
     image = tf.subtract(image, 127. / 255.)
-    label = tf.subtract(label, tf.ones([256, 256, 1]) * 6)
     label = tf.cast(label, dtype=tf.int32)
 
     return image, label
@@ -74,7 +73,6 @@ def fcn_parse_fn_val_and_test(example):
 
     # Normalize data and labels
     image = tf.subtract(image, 127. / 255.)
-    label = tf.subtract(label, tf.ones([256, 256, 1]) * 6)
     label = tf.cast(label, dtype=tf.int32)
 
     return image, label
@@ -135,7 +133,6 @@ def unet_parse_fn(example):
 
   # Normalize data and labels
   image = tf.subtract(image, 127. / 255.)
-  label = tf.subtract(label, tf.ones([target_height, target_width, 1]) * classes)
   label = tf.cast(label, dtype=tf.int32)
 
   return image, label
